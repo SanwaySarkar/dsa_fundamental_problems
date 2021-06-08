@@ -1,10 +1,10 @@
 class Solution {
     public void rotate(int[][] matrix) {
-        transpose(matrix);
-        reflect(matrix);
+        transposeMatrix(matrix);
+        reverseMatrix(matrix);
     }
     
-    public void transpose(int[][] matrix) {
+    public void transposeMatrix(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
@@ -15,7 +15,7 @@ class Solution {
         }
     }
     
-    public void reflect(int[][] matrix) {
+    public void reverseMatrix(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n / 2; j++) {
