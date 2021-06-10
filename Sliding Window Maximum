@@ -1,0 +1,25 @@
+import java.util.*;
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        List<Integer> result = new ArrayList<>();
+        int resultFinal[] = new int[nums.length-k+1];
+		Deque<Integer> deque
+        = new LinkedList<Integer>();
+        int m=0;
+        List<Integer> res = new ArrayList<>();
+		
+		for(int i =0;i<k;i++) {
+			deque.add(nums[i]);
+		}
+        //res.add(Collections.max(deque));
+        resultFinal[0] = Integer.valueOf(Collections.max(deque));
+		for(int j= 0;j<nums.length-k;j++) {
+            m++;
+			deque.addLast(nums[k+j]);
+			deque.removeFirst();
+			//res.add(Collections.max(deque));
+            resultFinal[m] = Integer.valueOf(Collections.max(deque));
+		}
+        return resultFinal;
+    }
+}
