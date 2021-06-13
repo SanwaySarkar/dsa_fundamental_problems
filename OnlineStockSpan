@@ -1,0 +1,31 @@
+class StockSpanner {
+
+  public  List<Integer> array =new ArrayList<Integer>();
+	int index =0;
+    public StockSpanner() {
+        
+    }
+    
+    public int next(int price) {
+      if(index ==0) {
+          array.clear();
+			    array.add(price);
+			    index++;
+			    return 1;
+		}
+		
+		int curr_index = index;int c=1;
+		while((curr_index-1)>=0 && array.get(curr_index-1)<=price) {
+			curr_index--;c++;	
+		}
+		array.add(price);
+		index++;
+    return c;
+    }
+}
+
+/**
+ * Your StockSpanner object will be instantiated and called as such:
+ * StockSpanner obj = new StockSpanner();
+ * int param_1 = obj.next(price);
+ */
