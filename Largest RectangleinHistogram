@@ -1,0 +1,51 @@
+class Solution {
+	public int largestRectangleArea(int[] arr) {
+		int result = Integer.MIN_VALUE;
+		int leftGreaterelementindcies[] = new int[arr.length];
+		int rightGreaterelementindcies[] = new int[arr.length];
+		Stack<Integer> s = new Stack<Integer>();
+		s.push(0);
+		leftGreaterelementindcies[0] = -1;
+		rightGreaterelementindcies[arr.length - 1] = arr.length;
+
+		for (int i = 1; i < arr.length; i++) {
+			while ((s.isEmpty() == false && arr[(s.peek())] >= arr[i])) {
+
+				s.pop();
+
+			}
+			int span = s.isEmpty() ? -1 : s.peek();
+			leftGreaterelementindcies[i] = span;
+			// System.out.println("for "+arr[i]+" count is "+span+" ");
+			s.push(i);
+		}
+
+		s.clear();
+		s.push(arr.length - 1);
+		// System.out.println("for "+arr[arr.length-1]+" count is -1" );
+		for (int i = arr.length - 2; i >= 0; i--) {
+			while ((s.isEmpty() == false && arr[s.peek()] >= arr[i])) {
+
+				s.pop();
+
+			}
+			int span = s.isEmpty() ? arr.length : s.peek();
+			rightGreaterelementindcies[i] = span;
+			// System.out.println("for "+arr[i]+" count is "+span+" ");
+			s.push(i);
+		}
+		for (int i = 0; i < arr.length; i++) {
+			int area = ((i - leftGreaterelementindcies[i] - 1) * arr[i]);
+
+			int area1 = ((rightGreaterelementindcies[i] - i) - 1) * arr[i];
+			// System.out.println("area for "+arr[i]+" "+area);
+			// System.out.println("area1 for "+arr[i]+" "+area1);
+			if ((arr[i] + area1 + area) > result) {
+				result = arr[i] + area1 + area;
+			}
+			// System.out.println("result for "+arr[i]+" "+(arr[i]+area1+area));
+			// System.out.println("final result "+result);
+		}
+		return result;
+	}
+}
