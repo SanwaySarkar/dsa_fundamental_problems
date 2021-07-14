@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Solution {
+    public int twoCitySchedCost(int[][] data) {
+ 
+    Arrays.sort(data, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                Integer diff1= o1[1]-o1[0];
+                Integer diff2 = o2[1]-o2[0];
+
+
+                return -(diff1.compareTo(diff2));
+            }
+        });
+    int result =0;
+        for ( int i = 0; i < data.length; i++) {
+            if(i<data.length/2)
+                result = result + data[i][0];
+            else
+                result = result +data[i][1];
+
+        }
+
+    return result;
+    }
+}
