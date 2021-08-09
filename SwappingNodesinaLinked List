@@ -1,0 +1,22 @@
+lass Solution {
+    public ListNode swapNodes(ListNode head1, int k) {
+        ListNode ptr1 = head1;
+		ListNode ptr2 = head1;
+		ListNode ptr3 = head1;
+		int i=1;
+		while(i<k) {
+			ptr1 = ptr1.next;
+			ptr3 = ptr3.next;
+			i++;
+		}
+		while(ptr1.next!=null) {
+			
+			ptr1 = ptr1.next;
+			ptr2 = ptr2.next;
+		}
+		int temp = ptr2.val;
+		ptr2.val = ptr3.val;
+		ptr3.val = temp;
+        return head1;
+    }
+}
